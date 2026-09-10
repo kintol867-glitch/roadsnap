@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Report Road Damage</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap</a>
+    <nav>
+      <a href="index.html" class="active">Report</a>
+      <a href="map.html">Map</a>
+    </nav>
+  </div>
+
+  <div class="page">
+    <h1>Report Road Damage</h1>
+    <p class="subtitle">Snap a photo, confirm your location, and submit — no account needed.</p>
+
+    <div class="card">
+      <form id="report-form">
+
+        <label for="image-input">Photo</label>
+        <label class="upload-box" id="upload-box" for="image-input">
+          <span id="upload-placeholder">📷 Tap to take or choose a photo</span>
+          <img id="preview-img" style="display:none;" />
+          <input type="file" id="image-input" accept="image/png, image/jpeg" capture="environment" required />
+        </label>
+        <div class="upload-hint">JPG or PNG, up to 10MB</div>
+
+        <label for="lat-input">Location</label>
+        <div class="location-row">
+          <input type="text" id="lat-input" placeholder="Latitude" readonly required />
+          <input type="text" id="lng-input" placeholder="Longitude" readonly required />
+          <button type="button" class="btn-secondary" id="locate-btn">📍 Use my location</button>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn" disabled>Submit Report</button>
+
+        <div class="status-msg" id="status-msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>

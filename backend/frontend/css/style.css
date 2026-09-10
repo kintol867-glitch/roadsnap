@@ -1,0 +1,263 @@
+:root {
+  --navy: #1d2b4f;
+  --blue: #2f6fed;
+  --light-blue: #eaf1ff;
+  --minor: #f4b400;
+  --moderate: #ff8c1a;
+  --severe: #e03131;
+  --gray-bg: #f5f6fa;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --white: #ffffff;
+  --radius: 10px;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--gray-bg);
+  color: var(--text);
+}
+
+/* ---------- Top nav ---------- */
+.navbar {
+  background: var(--navy);
+  color: var(--white);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.navbar nav a {
+  color: var(--white);
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+  opacity: 1;
+  border-bottom: 2px solid var(--blue);
+}
+
+/* ---------- Layout ---------- */
+.page {
+  max-width: 720px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.page-wide {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* ---------- Card / form ---------- */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+
+label:first-of-type {
+  margin-top: 0;
+}
+
+.upload-box {
+  border: 2px dashed #c7d2e0;
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--light-blue);
+  transition: border-color 0.15s ease;
+}
+
+.upload-box:hover {
+  border-color: var(--blue);
+}
+
+.upload-box img {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.upload-hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.location-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.location-row input {
+  flex: 1;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d7dce3;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+  padding: 12px 20px;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.btn-primary:disabled {
+  background: #9db6e8;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--light-blue);
+  color: var(--blue);
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+
+.status-msg {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.status-msg.success {
+  display: block;
+  background: #e6f6ec;
+  color: #1e7e34;
+}
+
+.status-msg.error {
+  display: block;
+  background: #fdeaea;
+  color: #b02a2a;
+}
+
+/* ---------- Map page ---------- */
+#map {
+  width: 100%;
+  height: calc(100vh - 130px);
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: var(--white);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: 0.85rem;
+  z-index: 1000;
+}
+
+.map-legend div {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.dot.minor { background: var(--minor); }
+.dot.moderate { background: var(--moderate); }
+.dot.severe { background: var(--severe); }
+
+.map-wrap {
+  position: relative;
+}
+
+.popup-content {
+  font-size: 0.85rem;
+}
+
+.popup-content img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.badge.minor { background: var(--minor); }
+.badge.moderate { background: var(--moderate); }
+.badge.severe { background: var(--severe); }

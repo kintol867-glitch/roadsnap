@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Damage Map</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap</a>
+    <nav>
+      <a href="index.html">Report</a>
+      <a href="map.html" class="active">Map</a>
+    </nav>
+  </div>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+    <div class="map-legend">
+      <strong>Severity</strong>
+      <div><span class="dot minor"></span> Minor</div>
+      <div><span class="dot moderate"></span> Moderate</div>
+      <div><span class="dot severe"></span> Severe</div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>
