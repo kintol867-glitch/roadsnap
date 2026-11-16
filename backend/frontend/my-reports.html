@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — My Reports</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap</a>
+    <nav>
+      <a href="index.html">Report</a>
+      <a href="map.html">Map</a>
+      <a href="navigate.html">Navigate</a>
+      <a href="my-reports.html" class="active">My Reports</a>
+    </nav>
+  </div>
+
+  <div class="page">
+    <h2 class="page-title">My Reports</h2>
+    <p class="muted-note">
+      These are the reports sent from this phone or browser. There is no account, so the list is tied to this browser:
+      clearing your browser data or switching devices will hide it.
+    </p>
+    <div id="my-list" class="my-list"><p class="muted-note">Loading your reports...</p></div>
+  </div>
+
+  <footer class="site-footer">RoadSnap &middot; AI-based road damage detection and reporting</footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/my-reports.js"></script>
+</body>
+</html>

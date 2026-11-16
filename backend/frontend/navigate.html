@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Navigate</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap</a>
+    <nav>
+      <a href="index.html">Report</a>
+      <a href="map.html">Map</a>
+      <a href="navigate.html" class="active">Navigate</a>
+      <a href="my-reports.html">My Reports</a>
+    </nav>
+  </div>
+
+  <div class="nav-wrap">
+    <div id="map"></div>
+
+    <!-- Live navigation banner -->
+    <div class="nav-hud" id="nav-hud" hidden>
+      <div class="hud-main">
+        <div class="hud-instruction" id="hud-instruction">Starting...</div>
+        <div class="hud-sub" id="hud-distance"></div>
+      </div>
+      <div class="hud-side">
+        <div id="hud-remaining">--</div>
+        <button type="button" class="btn-danger hud-stop" id="stop-btn">Stop</button>
+      </div>
+    </div>
+
+    <!-- Big warning sign shown when road damage is close ahead -->
+    <div class="hazard-alert" id="hazard-alert" hidden role="alert" aria-live="assertive">
+      <div class="ha-icon">⚠</div>
+      <div class="ha-text">
+        <div class="ha-title" id="ha-title">SLOW DOWN</div>
+        <div class="ha-sub" id="ha-sub"></div>
+      </div>
+      <div class="ha-dist" id="ha-dist"></div>
+    </div>
+
+    <aside class="nav-panel" id="nav-panel">
+      <h2>Safe route finder</h2>
+      <p class="nav-intro">Find a route and see reported road damage along the way.</p>
+
+      <label for="from-input">From</label>
+      <div class="search-field">
+        <input type="text" id="from-input" placeholder="Search a place or use your location" autocomplete="off" />
+        <button type="button" class="mini-btn" id="from-locate" title="Use my location">📍</button>
+        <ul class="suggestions" id="from-list"></ul>
+      </div>
+
+      <label for="to-input">To</label>
+      <div class="search-field">
+        <input type="text" id="to-input" placeholder="Where do you want to go?" autocomplete="off" />
+        <button type="button" class="mini-btn" id="to-pick" title="Pick on the map">📌</button>
+        <ul class="suggestions" id="to-list"></ul>
+      </div>
+      <div class="nav-hint" id="pick-hint">Tip: tap 📌, then tap the map to set your destination.</div>
+
+      <button type="button" class="btn-primary" id="find-btn">Find routes</button>
+
+      <div id="route-message" class="route-message"></div>
+      <div id="route-results"></div>
+
+      <div id="route-detail" hidden>
+        <button type="button" class="btn-primary start-btn" id="start-btn">▶ Start navigation</button>
+        <label class="voice-toggle"><input type="checkbox" id="voice-toggle" checked /> Voice alerts</label>
+
+        <h3>Road damage on this route</h3>
+        <ul class="hazard-list" id="hazard-list"></ul>
+
+        <details class="steps-box">
+          <summary>Turn-by-turn directions</summary>
+          <ol id="steps-list"></ol>
+        </details>
+      </div>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/navigate.js"></script>
+</body>
+</html>

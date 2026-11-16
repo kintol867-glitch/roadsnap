@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — System Monitoring</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap Admin</a>
+    <nav>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-monitor.html" class="active">Monitoring</a>
+      <a href="admin-dataset.html">Dataset</a>
+      <a href="map.html">Public Map</a>
+      <a href="#" id="logout-link">Log Out</a>
+    </nav>
+  </div>
+
+  <div class="dash">
+    <div class="dash-header">
+      <div>
+        <h1>System &amp; Model Monitoring</h1>
+        <p class="subtitle" id="welcome-msg">Loading...</p>
+      </div>
+      <div class="dash-header-actions">
+        <span class="updated" id="updated-at"></span>
+        <button type="button" class="btn-secondary" id="refresh-btn">⟳ Refresh</button>
+      </div>
+    </div>
+
+    <h2 class="section-title">System health</h2>
+    <div class="health-grid" id="health"></div>
+
+    <h2 class="section-title">Activity</h2>
+    <div class="stat-grid" id="totals"></div>
+    <div class="panel"><h3>Reports in the last 14 days</h3><div id="activity-chart"></div></div>
+
+    <h2 class="section-title">AI detection results</h2>
+    <div class="insight-grid">
+      <div class="panel"><h3>Severity found</h3><div id="severity-chart"></div></div>
+      <div class="panel"><h3>Damage types found</h3><div id="type-chart"></div></div>
+    </div>
+    <div class="panel"><h3>How confident is the AI? (number of detections per confidence range)</h3><div id="conf-chart"></div></div>
+
+    <h2 class="section-title">Is the AI right? (based on admin decisions)</h2>
+    <p class="muted-note">Accepted = verified, in progress or fixed. Rejected = flagged or removed. A high acceptance rate means the admin usually agrees with the AI.</p>
+    <div class="panel"><div id="feedback"></div></div>
+
+    <h2 class="section-title">Model test metrics (from training)</h2>
+    <div class="panel"><div id="metrics"></div></div>
+
+    <h2 class="section-title">Possible missed detections</h2>
+    <p class="muted-note">The AI said "no damage" but the admin accepted the report. These photos are the best material for the next training round.</p>
+    <div class="panel"><div id="missed"></div></div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin-monitor.js"></script>
+</body>
+</html>

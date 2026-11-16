@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Admin Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-body">
+
+  <div class="login-shell">
+    <div class="login-brand">
+      <div class="login-logo">🛣️</div>
+      <h1>RoadSnap</h1>
+      <p>AI-based road damage detection and reporting.</p>
+      <ul class="login-points">
+        <li>Review and verify citizen reports</li>
+        <li>Flag or remove bad submissions</li>
+        <li>Track road safety at a glance</li>
+      </ul>
+    </div>
+
+    <div class="login-card">
+      <h2>Admin sign in</h2>
+      <p class="subtitle">Enter your credentials to open the dashboard.</p>
+
+      <form id="login-form" novalidate>
+        <label for="username">Username</label>
+        <input type="text" id="username" autocomplete="username" placeholder="admin" required />
+
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="password" autocomplete="current-password" placeholder="••••••••" required />
+          <button type="button" id="toggle-password" class="toggle-password" aria-label="Show password">Show</button>
+        </div>
+
+        <div class="status-msg" id="login-error" role="alert"></div>
+
+        <button type="submit" class="btn-primary" id="login-btn">Sign in</button>
+      </form>
+
+      <p class="login-foot"><a href="index.html">← Back to the public report page</a></p>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    const form = document.getElementById("login-form");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const loginBtn = document.getElementById("login-btn");
+    const errorBox = document.getElementById("login-error");
+    const toggleBtn = document.getElementById("toggle-password");
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.className = "status-msg error";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      const showing = passwordInput.type === "text";
+      passwordInput.type = showing ? "password" : "text";
+      toggleBtn.textContent = showing ? "Show" : "Hide";
+      toggleBtn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+    });
+
+    // If already logged in, go straight to the dashboard.
+    fetch(`${API_BASE_URL}/admin/me`, { credentials: "include" })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.logged_in) window.location.href = "admin-dashboard.html";
+      })
+      .catch(() => {});
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorBox.className = "status-msg";
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!username || !password) {
+        showError("Please enter both your username and password.");
+        (username ? passwordInput : usernameInput).focus();
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = "Signing in...";
+
+      try {
+        const resp = await fetch(`${API_BASE_URL}/admin/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await resp.json().catch(() => ({}));
+
+        if (!resp.ok) {
+          throw new Error(data.error || "Login failed.");
+        }
+
+        UI.toast(`Welcome back, ${data.admin.username}!`, "success", 1500);
+        loginBtn.textContent = "Success! Redirecting...";
+        setTimeout(() => {
+          window.location.href = "admin-dashboard.html";
+        }, 900);
+      } catch (err) {
+        const message = UI.errorMessage(err);
+        showError(message);
+        UI.toast(message, "error", 5000);
+        passwordInput.value = "";
+        passwordInput.focus();
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Sign in";
+      }
+    });
+  </script>
+</body>
+</html>

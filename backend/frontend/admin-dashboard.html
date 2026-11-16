@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap Admin</a>
+    <nav>
+      <a href="admin-dashboard.html" class="active">Dashboard</a>
+      <a href="admin-monitor.html">Monitoring</a>
+      <a href="admin-dataset.html">Dataset</a>
+      <a href="map.html">Public Map</a>
+      <a href="#" id="logout-link">Log Out</a>
+    </nav>
+  </div>
+
+  <div class="dash">
+    <div class="dash-header">
+      <div>
+        <h1>Moderation Dashboard</h1>
+        <p class="subtitle" id="welcome-msg">Loading...</p>
+      </div>
+      <div class="dash-header-actions">
+        <span class="updated" id="updated-at"></span>
+        <button type="button" class="btn-secondary" id="refresh-btn">⟳ Refresh</button>
+        <button type="button" class="btn-secondary" id="export-btn">⬇ Export CSV</button>
+      </div>
+    </div>
+
+    <!-- Summary numbers -->
+    <div class="stat-grid" id="stats"></div>
+
+    <!-- Breakdown charts -->
+    <div class="insight-grid">
+      <div class="panel">
+        <h3>Severity</h3>
+        <div id="severity-chart"></div>
+      </div>
+      <div class="panel">
+        <h3>Damage types</h3>
+        <div id="type-chart"></div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="toolbar">
+      <input type="text" id="search-input" placeholder="🔍 Search by ID, description or damage type..." />
+      <select id="status-filter">
+        <option value="">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="verified">Verified</option>
+        <option value="flagged">Flagged</option>
+        <option value="in_progress">In progress</option>
+        <option value="fixed">Fixed</option>
+        <option value="removed">Removed</option>
+      </select>
+      <select id="severity-filter">
+        <option value="">All severities</option>
+        <option value="Severe">Severe</option>
+        <option value="Moderate">Moderate</option>
+        <option value="Minor">Minor</option>
+        <option value="None">No damage</option>
+      </select>
+      <select id="location-filter">
+        <option value="">All locations</option>
+        <option value="mismatch">⚠ Photo GPS mismatch</option>
+        <option value="unverified">No photo GPS</option>
+        <option value="verified">Photo GPS matches</option>
+        <option value="manual">Typed by hand</option>
+      </select>
+      <select id="sort-select">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="severity">Most severe first</option>
+      </select>
+    </div>
+    <div class="result-count" id="result-count"></div>
+
+    <div id="reports-container" class="report-grid">Loading reports...</div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

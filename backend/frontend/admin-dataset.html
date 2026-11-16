@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Dataset Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap Admin</a>
+    <nav>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-monitor.html">Monitoring</a>
+      <a href="admin-dataset.html" class="active">Dataset</a>
+      <a href="map.html">Public Map</a>
+      <a href="#" id="logout-link">Log Out</a>
+    </nav>
+  </div>
+
+  <div class="dash">
+    <div class="dash-header">
+      <div>
+        <h1>Dataset Management</h1>
+        <p class="subtitle" id="welcome-msg">Loading...</p>
+      </div>
+      <div class="dash-header-actions">
+        <button type="button" class="btn-secondary" id="refresh-btn">⟳ Refresh</button>
+        <button type="button" class="btn-primary" id="export-btn">⬇ Export training set (ZIP)</button>
+      </div>
+    </div>
+
+    <p class="muted-note">
+      Pick the photos that should teach the AI, and set the <strong>correct</strong> damage class for each.
+      Use <em>background</em> for clean roads (so the AI learns not to over-detect). Then export the ZIP and retrain in Colab.
+    </p>
+
+    <div class="stat-grid" id="summary"></div>
+
+    <div class="panel retrain-panel" id="retrain"></div>
+
+    <div class="toolbar">
+      <select id="view-filter">
+        <option value="all">All reports</option>
+        <option value="missed">⚠ Missed detections (AI said no damage)</option>
+        <option value="accepted">Verified, in progress or fixed</option>
+        <option value="selected">Selected for training</option>
+        <option value="unselected">Not selected</option>
+      </select>
+      <span class="result-count" id="result-count"></span>
+    </div>
+
+    <div id="items" class="report-grid">Loading...</div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin-dataset.js"></script>
+</body>
+</html>

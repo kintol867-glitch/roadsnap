@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Report Road Damage</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap</a>
+    <nav>
+      <a href="index.html" class="active">Report</a>
+      <a href="map.html">Map</a>
+      <a href="navigate.html">Navigate</a>
+      <a href="my-reports.html">My Reports</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>See a damaged road? Report it in seconds.</h1>
+      <p>Snap a photo, confirm the location, and our AI checks the damage and tells you how to stay safe. No account needed.</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><span>Snap a photo</span></div>
+        <div class="step"><span class="step-num">2</span><span>Confirm location</span></div>
+        <div class="step"><span class="step-num">3</span><span>Get safety tips</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page report-layout">
+    <div class="card">
+      <form id="report-form">
+
+        <label for="image-input">Photo</label>
+        <div class="camera-box" id="camera-box">
+          <video id="camera-video" autoplay playsinline muted style="display:none;"></video>
+          <img id="preview-img" style="display:none;" alt="Captured photo" />
+          <div id="camera-placeholder" class="camera-placeholder">
+            <span class="cam-icon">📷</span>
+            <span>Take a live photo of the damage</span>
+          </div>
+        </div>
+        <div class="camera-actions">
+          <button type="button" class="btn-primary" id="camera-open-btn">📷 Open camera</button>
+          <button type="button" class="btn-capture" id="camera-capture-btn" style="display:none;">⚪ Capture</button>
+          <button type="button" class="btn-secondary" id="camera-retake-btn" style="display:none;">🔄 Retake</button>
+        </div>
+        <div class="upload-hint">
+          Live photos are tagged with your GPS location automatically.
+          <label class="upload-fallback" for="image-input">Camera not working? Upload a photo instead</label>
+        </div>
+        <input type="file" id="image-input" accept="image/png, image/jpeg" capture="environment" style="display:none;" />
+
+        <label for="lat-input">Location</label>
+        <div class="location-row">
+          <input type="text" id="lat-input" placeholder="Latitude" required />
+          <input type="text" id="lng-input" placeholder="Longitude" required />
+          <button type="button" class="btn-secondary" id="locate-btn">📍 Use my location</button>
+        </div>
+
+        <label for="description-input">Description <span class="optional">(optional)</span></label>
+        <textarea id="description-input" rows="4" maxlength="1000"
+          placeholder="Describe the damage: how big it is, which lane, nearby landmark, whether it floods when it rains..."></textarea>
+        <div class="char-count"><span id="desc-count">0</span>/1000</div>
+
+        <label for="email-input">Your email <span class="optional">(optional)</span></label>
+        <input type="email" id="email-input" maxlength="120" autocomplete="email" placeholder="you@example.com" />
+        <div class="upload-hint">We will email you a copy of your report with safety tips. We do not save your email address.</div>
+
+        <button type="submit" class="btn-primary" id="submit-btn" disabled>Submit Report</button>
+
+        <div class="status-msg" id="status-msg"></div>
+      </form>
+    </div>
+
+    <aside class="side-card">
+      <h3>📸 Tips for a good photo</h3>
+      <ul>
+        <li>Stand safely off the road. Never step into traffic.</li>
+        <li>Take it in daylight with the damage in the middle of the frame.</li>
+        <li>Get close enough to see cracks or holes clearly.</li>
+        <li>Add a landmark in the description to help repair crews find it.</li>
+      </ul>
+      <h3>🛡️ After you submit</h3>
+      <p>You'll see the type and severity of damage found, plus safety tips for motorists and the barangay. Severe damage also gets a suggested alternate route.</p>
+      <a class="side-link" href="map.html">View the damage map →</a>
+    </aside>
+  </div>
+
+  <footer class="site-footer">RoadSnap &middot; AI-based road damage detection and reporting</footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>

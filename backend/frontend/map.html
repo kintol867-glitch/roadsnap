@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadSnap — Damage Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html" class="brand">🛣️ RoadSnap</a>
+    <nav>
+      <a href="index.html">Report</a>
+      <a href="map.html" class="active">Map</a>
+      <a href="navigate.html">Navigate</a>
+      <a href="my-reports.html">My Reports</a>
+    </nav>
+  </div>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+
+    <div class="map-panel">
+      <div class="map-panel-title">Road damage map</div>
+      <div class="map-total" id="map-total">Loading...</div>
+
+      <label class="chip-row"><input type="checkbox" data-sev="Severe" checked />
+        <span class="dot severe"></span> Severe <span class="chip-count" id="count-Severe">0</span></label>
+      <label class="chip-row"><input type="checkbox" data-sev="Moderate" checked />
+        <span class="dot moderate"></span> Moderate <span class="chip-count" id="count-Moderate">0</span></label>
+      <label class="chip-row"><input type="checkbox" data-sev="Minor" checked />
+        <span class="dot minor"></span> Minor <span class="chip-count" id="count-Minor">0</span></label>
+      <label class="chip-row"><input type="checkbox" data-sev="Fixed" checked />
+        <span class="dot fixed"></span> Fixed <span class="chip-count" id="count-Fixed">0</span></label>
+      <label class="chip-row"><input type="checkbox" data-sev="None" />
+        <span class="dot none"></span> No damage <span class="chip-count" id="count-None">0</span></label>
+
+      <label class="chip-row heat-row"><input type="checkbox" id="heat-toggle" /> 🔥 Hotspot view</label>
+      <div class="heat-legend" id="heat-legend" style="display:none;">Darker areas have more or worse damage. Repaired spots are not counted.</div>
+
+      <button type="button" class="btn-secondary map-fit" id="fit-btn">Zoom to reports</button>
+      <a class="map-report-link" href="index.html">+ Report damage</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>
